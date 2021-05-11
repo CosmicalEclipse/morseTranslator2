@@ -1,0 +1,3 @@
+/Users/rafaeldias/CLionProjects/morseTranslator2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rafaeldias/CLionProjects/morseTranslator2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rafaeldias/CLionProjects/morseTranslator2/cmake-build-debug/CMakeFiles/morseTranslator2.dir
