@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 char toUpperCase(char x);
 
@@ -91,7 +92,7 @@ struct {
         .latin = 'U',
     },
     {
-        .morse = "...\0",
+        .morse = "...-\0",
         .latin = 'V',
     },
     {
@@ -110,6 +111,46 @@ struct {
         .morse = "--..\0",
         .latin = 'Z',
     },
+    {
+        .morse = "-----",
+        .latin = '0',
+    },
+    {
+        .morse = ".----",
+        .latin = '1',
+    },
+    {
+        .morse = "..---",
+        .latin = '2',
+    },
+    {
+        .morse = "...--",
+        .latin = '3',
+    },
+    {
+        .morse = "....-",
+        .latin = '4',
+    },
+    {
+        .morse = ".....",
+        .latin = '5',
+    },
+    {
+        .morse = "-....",
+        .latin = '6',
+    },
+    {
+        .morse = "--...",
+        .latin = '7',
+    },
+    {
+        .morse = "---..",
+        .latin = '8',
+    },
+    {
+        .morse = "----.",
+        .latin = '9',
+    },
 };
 
 char toUpperCase(char x){
@@ -119,16 +160,44 @@ char toUpperCase(char x){
     else return x;
 }
 
+int isValid(char* d){
+    for(int i = 0; i < 35; i++){
+        if(strcmp(alfie[i].morse, d) == 0){
+            return 1;
+        }
+    }
+
+    for(int i = 0; i < strlen(d); i++){
+        if((d[i] >= 97 && d[i] <= 122) || (d[i] >= 65 && d[i] <= 90) || (d[i] >= 48 && d[i] <= 57)){
+            return 2;
+        }
+    }
+    return -1;
+}
+
 int main(int argc, char* argv[]) {
-    for(int o = 1; o < argc; o++){
-        for(int i = 0; argv[o][i] != '\0'; i++){
-            for(int j = 0; j < 25; j++){
-                if(toUpperCase(argv[o][i]) == alfie[j].latin){
-                    printf("%s ", alfie[j].morse);
+    for (int o = 1; o < argc; o++) {
+
+        int v = isValid(argv[o]);
+
+        if(v == 1){
+            for(int p = 0; p <= 35; p++){
+                if(strcmp(alfie[p].morse, argv[o]) == 0){
+                    printf("%c", alfie[p].latin);
                 }
             }
+        }else if (v == 2){
+            for (int i = 0; argv[o][i] != '\0'; i++) {
+                for (int j = 0; j <= 35; j++) {
+                    if (toUpperCase(argv[o][i]) == alfie[j].latin) {
+                        printf("%s ", alfie[j].morse);
+                    }
+                }
+            }
+        }else{
+            printf("Invalid character(s)!");
         }
-        printf(" ");
+            printf(" ");
     }
     printf("\n");
     return 0;
